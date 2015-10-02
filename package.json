@@ -1,0 +1,35 @@
+{
+  "name": "windows-caption-color",
+  "version": "0.0.1",
+  "description": "Get Windows's title color",
+  "main": "index.js",
+  "scripts": {
+    "preinstall": "node-gyp rebuild"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zsxsoft/window-caption-color.git"
+  },
+  "keywords": [
+    "Windows",
+    "Title",
+    "Color",
+    "dwm"
+  ],
+  "author": {
+    "name": "zsx",
+    "email": "zsx@zsxsoft.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zsxsoft/window-caption-color/issues"
+  },
+  "homepage": "https://github.com/zsxsoft/window-caption-color",
+  "engines": {
+    "node": ">= 0.12.0"
+  },
+  "dependencies": {
+    "bindings": "^1.2.1",
+    "winreg": "0.0.12"
+  }
+}
