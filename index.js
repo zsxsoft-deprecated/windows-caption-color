@@ -13,42 +13,39 @@ function getARGB(object) {
 function get(callback) {
 	var addon = require('bindings')('./color.node');
 	var Winreg = require('winreg');
-	try {
-		var color = addon.color();
-	} catch (e) {
-		callback(false);
-		return;
-	}
-
-	if (!color) {
-		callback(false);
-		return;
-	}
-
-	var HSV = color.color.substr(0, 8); // TODO: fix error response.
-	var regKey = new Winreg({
-		hive: Winreg.HKCU,
-		key: '\\Software\\Microsoft\\Windows\\DWM'
-	});
 	var ret = {
 		dwm: {
-			hsv: HSV,
+			hsv: "00000000",
 			r: 0,
 			a: 0,
-			g, 0,
+			g: 0,
 			b: 0,
-			opaque: color.opaque
+			opaque: 0
 		},
 		reg: {
-			hsv: "0000000",
+			hsv: "00000000",
 			r: 0,
 			a: 0,
-			g, 0,
+			g: 0,
 			b: 0,
 			balance: 1
 		}
 	};
-	getARGB(ret.dwm);
+	try {
+		var color = addon.dwmColor();
+		var HSV = color.color.substr(0, 8); // TODO: fix error response.
+		ret.dwm.hsv = HSV;
+		ret.dwm.opaque = color.opaque;
+		getARGB(ret.dwm);
+	} catch (e) {
+		// do nothing
+	}
+
+	var regKey = new Winreg({
+		hive: Winreg.HKCU,
+		key: '\\Software\\Microsoft\\Windows\\DWM'
+	});
+	
 	regKey.values(function (err, items) {
 		if (err) { // Not support Windows 7
 			callback(null, ret);
