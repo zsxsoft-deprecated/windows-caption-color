@@ -1,7 +1,7 @@
 {
   "name": "windows-caption-color",
-  "version": "0.0.1",
-  "description": "Get Windows's title color",
+  "version": "0.0.2",
+  "description": "Get the caption color of an active windows in Windows 8+",
   "main": "index.js",
   "scripts": {
     "preinstall": "node-gyp rebuild"
@@ -12,7 +12,7 @@
   },
   "keywords": [
     "Windows",
-    "Title",
+    "Caption",
     "Color",
     "dwm"
   ],
