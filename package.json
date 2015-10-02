@@ -1,6 +1,6 @@
 {
   "name": "windows-caption-color",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Get the caption color of an active windows in Windows 8+",
   "main": "index.js",
   "scripts": {

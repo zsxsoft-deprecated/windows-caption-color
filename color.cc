@@ -4,7 +4,6 @@
 #include <windows.h>
 #include <dwmapi.h>
 #pragma comment(lib, "dwmapi.lib")
-#endif
 using namespace v8;
 
 bool IsWindowsVista() {
@@ -30,7 +29,6 @@ void dwmColor(const FunctionCallbackInfo<Value>& args) {
 	DWORD size = sizeof(DWORD);
 	BOOL pfOpaqueBlend = TRUE;
 	Local<Object> obj = Object::New(isolate);
-	#ifdef _WIN32
 	if (!IsWindowsVista()) {
 		args.GetReturnValue().Set(false);
 		return;
@@ -44,9 +42,14 @@ void dwmColor(const FunctionCallbackInfo<Value>& args) {
 	obj->Set(String::NewFromUtf8(isolate, "opaque"), v8::Boolean::New(isolate, pfOpaqueBlend));
 	args.GetReturnValue().Set(obj);
 	return;
-	#endif
 	args.GetReturnValue().Set(false);
 }
+#else
+using namespace v8;
+void dwmColor(const FunctionCallbackInfo<Value>& args) {
+	args.GetReturnValue().Set(false);
+}
+#endif
 
 void Init(Handle<Object> exports) {
 	Isolate* isolate = Isolate::GetCurrent();

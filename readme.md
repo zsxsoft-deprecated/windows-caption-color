@@ -1,14 +1,14 @@
 windows-caption-color
 ===================================
 
-It's a node extension to get the caption color of an active windows in Windows 8+.
+It's a node extension to get the caption color of an active windows in Windows 8+. In non-Windows, it will always return false.
 ## Installion
 ``npm install windows-caption-color --save``
 
 ## Example
 ```javascript
 require('windows-caption-color').get(function(err, ret) {
-    if (!err) {
+    if (err === null) {
         console.log(ret);
     }
 });
