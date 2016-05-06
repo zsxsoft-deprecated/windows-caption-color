@@ -33,7 +33,7 @@ function get(callback) {
 	};
 	try {
 		var color = addon.dwmColor();
-		var HSV = color.color.substr(0, 8); // TODO: fix error response.
+		var HSV = Number(color.color).toString(16);
 		ret.dwm.hsv = HSV;
 		ret.dwm.opaque = color.opaque;
 		getARGB(ret.dwm);
